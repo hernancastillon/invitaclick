@@ -1,824 +1,571 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invita VIP Click</title>
-    <meta name="description" content="Somos especialistas en invitaciones digitales.">
-    
-    <!-- Open Graph / Redes Sociales (Meta Image 1200x630) -->
-    <meta property="og:title" content="Invita VIP Click">
-    <meta property="og:description" content="Somos especialistas en invitaciones digitales.">
-    <meta property="og:image" content="imagenes/fbcover.jpg">
-    <meta property="og:type" content="website">
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invita VIP Click | Invitaciones Digitales</title>
+  <meta name="description" content="Diseños elegantes de invitaciones digitales para bodas, XV años, cumpleaños, bautizos y más.">
+  <meta property="og:title" content="Invita VIP Click">
+  <meta property="og:description" content="Invitaciones digitales elegantes que enamoran a primera vista.">
+  <meta property="og:image" content="imagenes/og-image.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="imagenes/favicon.png" id="faviconLink">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  
+  
+  <style>
+    :root {
+      --bg-dark: #0b1220;
+      --bg-card: #121a2b;
+      --bg-soft: #f8fafc;
+      --text: #e8eef8;
+      --text-muted: #9fb0c7;
+      --text-dark: #0f172a;
+      --primary: #3b82f6;
+      --gold: #d4af37;
+      --gold-soft: #f5e6b3;
+      --border: rgba(255,255,255,0.08);
+      --radius: 16px;
+      --container: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button, .btn { font-family: inherit; cursor: pointer; border: none; outline: none; }
+    .container { width: min(100% - 2rem, var(--container)); margin-inline: auto; }
 
-    <link rel="shortcut icon" href="imagenes/icono.png">
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Barlow:wght@300;400;600;700&family=Bebas+Neue&family=Caveat:wght@400;700&family=Cormorant+Garamond:wght@400;600;700&family=Courier+Prime&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@400;500;700&family=Great+Vibes&family=Inter:wght@300;400;600;800&family=Lato:wght@300;400;700;900&family=Libre+Baskerville:wght@400;700&family=Lora:wght@400;600;700&family=Manrope:wght@400;600;800&family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;600;800&family=Nunito:wght@300;400;700;800&family=Open+Sans:wght@300;400;600;800&family=Oswald:wght@400;600&family=Pacifico&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;800&family=Quicksand:wght@400;600;700&family=Raleway:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Rubik:wght@300;400;600;800&family=Space+Grotesk:wght@400;500;700&family=Ubuntu:wght@300;400;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        :root { --menu-overlay-bg: rgba(17, 17, 17, 0.97); --menu-overlay-color: #ffffff; --font-heading: 'Poppins', sans-serif; --font-body: 'Inter', sans-serif; --color-primary: #007acc; --color-primary-light: #38bdf8; }
-        body { font-family: var(--font-body); background-color: #000000; color: #333; }
-        .page-wrapper { max-width: 1400px; margin: 0 auto; background: #ffffff; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); position: relative; }
+    /* Toolbar */
+    .edit-toolbar {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 9999; display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
+      background: rgba(15,23,42,0.95); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 999px;
+      padding: 0.5rem 0.75rem; box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      max-width: calc(100% - 1.5rem);
+    }
+    .edit-toolbar .btn-sm {
+      padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 0.35rem; white-space: nowrap;
+    }
+    .btn-edit-toggle { background: linear-gradient(135deg,#8b5cf6,#6d28d9); color:#fff; }
+    .btn-edit-toggle.active { background: linear-gradient(135deg,#22c55e,#16a34a); }
+    .btn-save { background: var(--primary); color:#fff; }
+    .btn-export { background: rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); }
+    .btn-meta { background: rgba(234,179,8,0.2); color:#fde047; border:1px solid rgba(234,179,8,0.3); }
+    .btn-reset { background: rgba(239,68,68,0.2); color:#fca5a5; border:1px solid rgba(239,68,68,0.3); }
 
-        /* Marco flotante: mantiene los menús fijos/transparentes y los botones de WhatsApp
-           realmente pegados a la ventana al hacer scroll (position:fixed real), pero
-           limitados y centrados al ancho de la página en vez de al ancho del navegador. */
-        .fixed-frame { position: fixed; top: 0; left: 50%; width: 100%; max-width: 1400px; height: 100vh; transform: translateX(-50%); pointer-events: none; z-index: 998; }
-        .fixed-frame > * { position: absolute !important; pointer-events: auto; }
+    body.edit-mode [contenteditable="true"] {
+      outline: 2px dashed rgba(139,92,246,0.5); outline-offset: 4px; border-radius: 4px; min-width: 40px; cursor: text;
+    }
+    body.edit-mode [contenteditable="true"]:hover,
+    body.edit-mode [contenteditable="true"]:focus { outline-color:#8b5cf6; background:rgba(139,92,246,0.08); }
 
-        /* Botón hamburguesa (ícono animado que se transforma en X) */
-        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px 6px; align-items: center; justify-content: center; color: inherit; }
-        .hamburger-box { position: relative; display: inline-block; width: 24px; height: 18px; }
-        .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-            position: absolute; left: 0; width: 24px; height: 2.5px; border-radius: 2px; background-color: currentColor;
-            transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease, background-color 0.2s ease;
-        }
-        .hamburger-inner { top: 8px; }
-        .hamburger-inner::before { content: ""; top: -8px; }
-        .hamburger-inner::after { content: ""; top: 8px; }
-        header.menu-open .hamburger-inner { background-color: transparent; }
-        header.menu-open .hamburger-inner::before { top: 0; transform: rotate(45deg); }
-        header.menu-open .hamburger-inner::after { top: 0; transform: rotate(-45deg); }
+    .edit-controls { display:none; gap:0.4rem; margin-top:0.75rem; flex-wrap:wrap; justify-content:center; }
+    body.edit-mode .edit-controls { display:flex; }
+    .edit-btn {
+      padding:0.35rem 0.7rem; font-size:0.75rem; font-weight:600; border-radius:8px;
+      background:rgba(139,92,246,0.25); color:#c4b5fd; border:1px solid rgba(139,92,246,0.4);
+    }
+    .edit-btn:hover { background:rgba(139,92,246,0.4); }
+    .edit-btn.danger { background:rgba(239,68,68,0.2); color:#fca5a5; border-color:rgba(239,68,68,0.4); }
 
-        /* Permite que estilos "minimalistas" (nav oculto tras hamburguesa) también funcionen en escritorio */
-        .nav-menu.nav-active { display: flex !important; }
+    .img-edit-wrap { position:relative; }
+    body.edit-mode .img-edit-wrap::after {
+      content:'📷 Cambiar'; position:absolute; inset:0; background:rgba(0,0,0,0.55);
+      display:grid; place-items:center; color:#fff; font-size:0.85rem; font-weight:600;
+      opacity:0; transition:opacity 0.2s; cursor:pointer; border-radius:inherit;
+    }
+    body.edit-mode .img-edit-wrap:hover::after { opacity:1; }
 
-        /* Enlaces ancla (#seccion): desplazamiento suave y margen para que el menú fijo no tape el título */
-        html { scroll-behavior: smooth; }
-        [id] { scroll-margin-top: var(--anchor-offset, 20px); }
+    .toast {
+      position:fixed; top:90px; right:24px; z-index:10000; background:#166534; color:#fff;
+      padding:0.75rem 1.25rem; border-radius:12px; font-size:0.9rem; font-weight:500;
+      box-shadow:0 8px 24px rgba(0,0,0,0.3); transform:translateX(120%); transition:transform 0.3s;
+    }
+    .toast.show { transform:translateX(0); }
 
-        .slider-wrapper { position: relative; overflow: hidden; width: 100%; height: 400px; margin: 0 auto; }
-        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.5s ease-in-out; }
-        .slide-item { min-width: 100%; height: 100%; position: relative; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 20px; padding: 10px 15px; cursor: pointer; z-index: 10; border-radius: 4px; user-select: none; }
-        .slider-btn-prev { left: 10px; }
-        .slider-btn-next { right: 10px; }
-        .slider-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
-        .slider-dot { width: 12px; height: 12px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; }
-        .slider-dot.active { background: #ffffff; }
-        .slider-container-section[data-show-text="false"] .slide-item > * { display: none !important; }
-        .slider-container-section[data-show-controls="false"] .slider-btn,
-        .slider-container-section[data-show-controls="false"] .slider-dots { display: none !important; }
+    /* Header */
+    .header {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      background:rgba(11,18,32,0.75); backdrop-filter:blur(16px); border-bottom:1px solid var(--border);
+    }
+    .header.scrolled { background:rgba(11,18,32,0.95); }
+    .nav { display:flex; align-items:center; justify-content:space-between; height:72px; }
+    .logo { display:flex; align-items:center; gap:0.6rem; font-weight:700; font-size:1.15rem; }
+    .logo-icon {
+      width:36px; height:36px; background:linear-gradient(135deg,var(--gold),#f0d78c);
+      border-radius:10px; display:grid; place-items:center; color:#1a1200; font-size:1.1rem;
+    }
+    .nav-links { display:flex; align-items:center; gap:1.75rem; list-style:none; }
+    .nav-links a { font-size:0.925rem; font-weight:500; color:var(--text-muted); transition:color 0.2s; }
+    .nav-links a:hover { color:#fff; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:0.5rem;
+      padding:0.7rem 1.4rem; border-radius:999px; font-weight:600; font-size:0.925rem; transition:all 0.25s;
+    }
+    .btn-primary { background:linear-gradient(135deg,var(--primary),#1d4ed8); color:#fff; box-shadow:0 8px 24px rgba(37,99,235,0.35); }
+    .btn-primary:hover { transform:translateY(-2px); }
+    .btn-outline { background:transparent; border:1.5px solid rgba(255,255,255,0.2); color:#fff; }
+    .btn-outline:hover { border-color:rgba(255,255,255,0.45); background:rgba(255,255,255,0.05); }
+    .btn-gold { background:linear-gradient(135deg,var(--gold),#e8c547); color:#1a1200; box-shadow:0 8px 24px rgba(212,175,55,0.3); }
+    .btn-gold:hover { transform:translateY(-2px); }
+    .menu-toggle { display:none; background:none; color:#fff; font-size:1.5rem; }
 
-        /* Transición difuminado (fade) */
-        .slider-container-section[data-transition="fade"] .slider-track { display: block; position: relative; transform: none !important; transition: none !important; }
-        .slider-container-section[data-transition="fade"] .slide-item { position: absolute; top: 0; left: 0; width: 100%; min-width: 100%; height: 100%; opacity: 0; transition: opacity .8s ease-in-out; z-index: 1; }
-        .slider-container-section[data-transition="fade"] .slide-item.slide-active { opacity: 1; z-index: 2; }
-        .slider-container-section[data-transition="fade"] .slide-clone { display: none !important; }
+    /* Hero */
+    .hero {
+      position:relative; min-height:100vh; display:grid; place-items:center; text-align:center;
+      padding:7rem 0 5rem;
+      background: radial-gradient(ellipse 80% 60% at 50% -20%,rgba(59,130,246,0.25),transparent),
+                  radial-gradient(ellipse 60% 40% at 80% 50%,rgba(212,175,55,0.12),transparent), var(--bg-dark);
+    }
+    .hero-content { position:relative; z-index:1; max-width:780px; }
+    .badge {
+      display:inline-flex; align-items:center; gap:0.4rem; padding:0.4rem 0.9rem;
+      background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.3); border-radius:999px;
+      font-size:0.8rem; font-weight:600; color:var(--gold-soft); margin-bottom:1.5rem;
+    }
+    .hero h1 {
+      font-family:'Playfair Display',Georgia,serif; font-size:clamp(2.4rem,5.5vw,3.75rem);
+      font-weight:700; line-height:1.15; margin-bottom:1.25rem;
+      background:linear-gradient(180deg,#fff 30%,#a5b4c8); -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .hero p { font-size:1.15rem; color:var(--text-muted); max-width:560px; margin:0 auto 2rem; }
+    .hero-cta { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+    .hero-stats { display:flex; justify-content:center; gap:2.5rem; margin-top:3.5rem; flex-wrap:wrap; }
+    .stat { text-align:center; }
+    .stat strong { display:block; font-size:1.6rem; font-weight:700; color:#fff; }
+    .stat span { font-size:0.85rem; color:var(--text-muted); }
 
-        /* Grillas de servicios responsivas (incluye tarjetas cuadradas 1-5 por fila) */
-        @media (max-width: 900px) {
-            .services-grid.square-grid, .services-grid.is-square {
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            }
-        }
-        @media (max-width: 640px) {
-            .services-grid, .services-grid.square-grid, .services-grid.is-square {
-                grid-template-columns: 1fr !important;
-            }
-            .square-card { aspect-ratio: auto !important; min-height: 170px; }
-        }
+    section { padding:5.5rem 0; }
+    .section-label { display:inline-block; font-size:0.8rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--primary); margin-bottom:0.75rem; }
+    .section-title { font-family:'Playfair Display',Georgia,serif; font-size:clamp(1.9rem,4vw,2.6rem); font-weight:600; line-height:1.2; margin-bottom:1rem; }
+    .section-desc { color:var(--text-muted); font-size:1.05rem; max-width:540px; margin-bottom:2.5rem; }
+    .text-center { text-align:center; }
+    .text-center .section-desc { margin-inline:auto; }
 
-        /* Divisor visual entre columnas: centrado en el hueco entre columnas */
-        .ux-split-grid[data-divider="1"] > .ux-split-col:not(:last-child),
-        .ux-split-grid[data-divider="1"] > .column-item:not(:last-child),
-        .ux-split-grid[data-divider="1"] > .ux-grid-cell:not(:last-child),
-        [data-ux-split="1"][data-divider="1"] > .ux-split-col:not(:last-child),
-        [data-ux-split="1"][data-divider="1"] > .column-item:not(:last-child),
-        [data-ux-split="1"][data-divider="1"] > .ux-grid-cell:not(:last-child),
-        .columns-grid[data-divider="1"] > .ux-split-col:not(:last-child),
-        .columns-grid[data-divider="1"] > .column-item:not(:last-child) {
-            position: relative;
-            padding-right: 0;
-        }
-        .ux-split-grid[data-divider="1"] > .ux-split-col:not(:last-child)::after,
-        .ux-split-grid[data-divider="1"] > .column-item:not(:last-child)::after,
-        .ux-split-grid[data-divider="1"] > .ux-grid-cell:not(:last-child)::after,
-        [data-ux-split="1"][data-divider="1"] > .ux-split-col:not(:last-child)::after,
-        [data-ux-split="1"][data-divider="1"] > .column-item:not(:last-child)::after,
-        [data-ux-split="1"][data-divider="1"] > .ux-grid-cell:not(:last-child)::after,
-        .columns-grid[data-divider="1"] > .ux-split-col:not(:last-child)::after,
-        .columns-grid[data-divider="1"] > .column-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: calc(100% + (var(--ux-col-gap, var(--ux-div-pad, 16px)) / 2));
-            right: auto;
-            width: 0;
-            border-right-width: var(--ux-div-width, 2px);
-            border-right-style: var(--ux-div-style, solid);
-            border-right-color: var(--ux-div-color, #3b9dff);
-            height: var(--ux-div-height, 100%);
-            top: var(--ux-div-top, 50%);
-            transform: var(--ux-div-transform, translateX(-50%) translateY(-50%));
-            pointer-events: none;
-            box-sizing: border-box;
-        }
-        .ux-split-grid[data-divider="1"][data-div-valign="bottom"] > .ux-split-col:not(:last-child)::after,
-        .ux-split-grid[data-divider="1"][data-div-valign="bottom"] > .column-item:not(:last-child)::after,
-        [data-ux-split="1"][data-divider="1"][data-div-valign="bottom"] > .ux-split-col:not(:last-child)::after,
-        [data-ux-split="1"][data-divider="1"][data-div-valign="bottom"] > .column-item:not(:last-child)::after,
-        .columns-grid[data-divider="1"][data-div-valign="bottom"] > .column-item:not(:last-child)::after {
-            top: auto !important;
-            bottom: 0;
-            transform: none !important;
-        }
+    .feature-hero { position:relative; padding:6rem 0; background:linear-gradient(180deg,rgba(11,18,32,0.7),rgba(11,18,32,0.92)), url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80') center/cover no-repeat; }
+    .feature-hero .content { max-width:640px; }
+    .feature-hero h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(1.9rem,4vw,2.7rem); margin-bottom:1rem; }
+    .feature-hero p { color:var(--text-muted); font-size:1.1rem; margin-bottom:1.75rem; }
 
-        /* Columnas personalizadas / dividir bloque: se apilan en móvil
-           (!important para ganar a grid-template-columns inline del editor) */
-        @media (max-width: 768px) {
-            .columns-grid,
-            .ux-split-grid,
-            [data-ux-split="1"],
-            .ux-grid-container.columns-grid,
-            .ux-grid-container {
-                grid-template-columns: 1fr !important;
-            }
-            .ux-split-col,
-            .column-item,
-            .ux-grid-cell {
-                width: 100% !important;
-                max-width: 100% !important;
-                min-width: 0 !important;
-            }
-            /* En móvil el divisor pasa abajo de cada columna (menos la última) */
-            .ux-split-grid[data-divider="1"] > .ux-split-col:not(:last-child),
-            .ux-split-grid[data-divider="1"] > .column-item:not(:last-child),
-            [data-ux-split="1"][data-divider="1"] > .ux-split-col:not(:last-child),
-            [data-ux-split="1"][data-divider="1"] > .column-item:not(:last-child),
-            .columns-grid[data-divider="1"] > .ux-split-col:not(:last-child),
-            .columns-grid[data-divider="1"] > .column-item:not(:last-child) {
-                padding-right: 0 !important;
-                padding-bottom: var(--ux-div-pad, 16px);
-            }
-            .ux-split-grid[data-divider="1"] > .ux-split-col:not(:last-child)::after,
-            .ux-split-grid[data-divider="1"] > .column-item:not(:last-child)::after,
-            [data-ux-split="1"][data-divider="1"] > .ux-split-col:not(:last-child)::after,
-            [data-ux-split="1"][data-divider="1"] > .column-item:not(:last-child)::after,
-            .columns-grid[data-divider="1"] > .ux-split-col:not(:last-child)::after,
-            .columns-grid[data-divider="1"] > .column-item:not(:last-child)::after {
-                right: auto;
-                left: var(--ux-div-h-left, 50%);
-                top: auto;
-                bottom: 0;
-                width: var(--ux-div-height, 100%);
-                height: 0;
-                border-right: none;
-                border-bottom-width: var(--ux-div-width, 2px);
-                border-bottom-style: var(--ux-div-style, solid);
-                border-bottom-color: var(--ux-div-color, #3b9dff);
-                transform: var(--ux-div-h-transform, translateX(-50%));
-            }
-        }
-        @media (max-width: 900px) {
-            .columns-grid[data-columns="4"],
-            .columns-grid[data-columns="5"],
-            .columns-grid[data-columns="6"],
-            .ux-split-grid[data-columns="4"],
-            .ux-split-grid[data-columns="5"],
-            .ux-split-grid[data-columns="6"],
-            [data-ux-split="1"][data-columns="4"],
-            [data-ux-split="1"][data-columns="5"],
-            [data-ux-split="1"][data-columns="6"] {
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            }
-        }
-        @media (max-width: 640px) {
-            .columns-grid[data-columns="4"],
-            .columns-grid[data-columns="5"],
-            .columns-grid[data-columns="6"],
-            .ux-split-grid[data-columns="4"],
-            .ux-split-grid[data-columns="5"],
-            .ux-split-grid[data-columns="6"],
-            [data-ux-split="1"][data-columns="4"],
-            [data-ux-split="1"][data-columns="5"],
-            [data-ux-split="1"][data-columns="6"] {
-                grid-template-columns: 1fr !important;
-            }
-        }
+    .steps { background:#0e1628; }
+    .steps-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:2.5rem; }
+    .step-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:2rem 1.75rem; transition:transform 0.25s; }
+    .step-card:hover { transform:translateY(-4px); border-color:rgba(59,130,246,0.35); }
+    .step-num { width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg,var(--primary),#1d4ed8); display:grid; place-items:center; font-weight:700; margin-bottom:1.25rem; }
+    .step-card h3 { font-size:1.15rem; font-weight:600; margin-bottom:0.5rem; }
+    .step-card p { color:var(--text-muted); font-size:0.95rem; }
 
-        @media (max-width: 768px) {
+    .occasions { background:var(--bg-soft); color:var(--text-dark); }
+    .occasions .section-label { color:var(--primary); }
+    .occasions .section-desc { color:#64748b; }
+    .occasions-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1.25rem; margin-top:2.5rem; }
+    .occasion-card { background:#fff; border-radius:20px; padding:1.75rem 1rem; text-align:center; box-shadow:0 4px 20px rgba(15,23,42,0.06); border:1px solid #e2e8f0; transition:transform 0.25s; }
+    .occasion-card:hover { transform:translateY(-6px); }
+    .occasion-icon { width:56px; height:56px; border-radius:50%; margin:0 auto 1rem; display:grid; place-items:center; font-size:1.5rem; background:#eff6ff; }
+    .occasion-card h3 { font-size:0.95rem; font-weight:600; color:var(--text-dark); }
 
-            .menu-toggle { display: inline-flex !important; }
+    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; margin-top:2.5rem; }
+    .feature-item { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.75rem; }
+    .feature-icon { width:48px; height:48px; border-radius:14px; background:rgba(59,130,246,0.12); display:grid; place-items:center; font-size:1.3rem; margin-bottom:1rem; }
+    .feature-item h3 { font-size:1.05rem; font-weight:600; margin-bottom:0.4rem; }
+    .feature-item p { color:var(--text-muted); font-size:0.9rem; }
 
-            /* Overlay de menú móvil a pantalla completa */
-            .nav-menu {
-                display: flex !important;
-                position: fixed !important;
-                top: 0 !important; left: 0 !important;
-                width: 100% !important; height: 100% !important;
-                margin: 0 !important;
-                background: var(--menu-overlay-bg) !important;
-                flex-direction: column !important;
-                justify-content: flex-start !important;
-                align-items: center !important;
-                padding-top: 90px !important;
-                gap: 22px !important;
-                text-align: center !important;
-                opacity: 0;
-                visibility: hidden;
-                pointer-events: none;
-                transition: opacity 0.3s ease, visibility 0.3s ease;
-                z-index: 999;
-                overflow-y: auto !important;
-            }
-            .nav-menu.nav-active {
-                opacity: 1 !important;
-                visibility: visible !important;
-                pointer-events: auto !important;
-            }
-            .nav-menu a, .nav-menu > span {
-                color: var(--menu-overlay-color) !important;
-                font-size: 21px !important;
-                font-weight: 600 !important;
-                padding: 10px 22px;
-                border-radius: 8px;
-                transition: background 0.2s ease, opacity 0.2s ease;
-            }
-            /* Overlay/resaltado al tocar (y al pasar el mouse solo si los efectos hover están activos) */
-            body.hover-fx .nav-menu a:hover, .nav-menu a:active {
-                background: rgba(128, 128, 128, 0.18);
-                opacity: 0.9;
-            }
-            header.menu-open .brand-container { display: none !important; }
-            header.menu-open { position: relative !important; justify-content: center !important; padding: 25px 15px !important; }
-            header.menu-open .menu-toggle { position: absolute !important; top: 12px !important; right: 15px !important; z-index: 1001; color: var(--menu-overlay-color) !important; }
-        }
+    .designs { background:var(--bg-soft); color:var(--text-dark); }
+    .designs .section-label { color:var(--primary); }
+    .designs .section-desc { color:#64748b; }
+    .designs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1.25rem; margin-top:2.5rem; }
+    .design-card { background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 4px 20px rgba(15,23,42,0.06); border:1px solid #e2e8f0; transition:transform 0.3s; }
+    .design-card:hover { transform:translateY(-8px); }
+    .design-card img { width:100%; aspect-ratio:3/4; object-fit:cover; }
+    .design-card .label { padding:1rem; text-align:center; font-weight:600; font-size:0.9rem; color:var(--text-dark); }
 
-        body.hover-fx a[style*="inline-block"], body.hover-fx a[style*="inline-flex"], body.hover-fx a[style*="display: flex"], body.hover-fx a[style*="display:flex"], body.hover-fx a[style*="display: block"], body.hover-fx a[style*="display:block"], body.hover-fx button, body.hover-fx .nav-cta-btn, body.hover-fx .wa-float-btn, body.hover-fx .wa-float-btn-cta, body.hover-fx .slider-btn, body.hover-fx .social-link, body.hover-fx a.builder-element[style*="padding"], body.hover-fx a.builder-element[style*="background"] { transition: transform .22s ease, filter .22s ease, box-shadow .22s ease, opacity .22s ease, background-color .22s ease, color .22s ease; }
-        body.hover-fx a[style*="inline-block"]:not([style*="--ux-h-transform"]):hover, body.hover-fx a[style*="inline-flex"]:not([style*="--ux-h-transform"]):hover, body.hover-fx a[style*="display: flex"]:not([style*="--ux-h-transform"]):hover, body.hover-fx a[style*="display:flex"]:not([style*="--ux-h-transform"]):hover, body.hover-fx a[style*="display: block"]:not([style*="--ux-h-transform"]):hover, body.hover-fx a[style*="display:block"]:not([style*="--ux-h-transform"]):hover, body.hover-fx button:not([style*="--ux-h-transform"]):hover, body.hover-fx .nav-cta-btn:not([style*="--ux-h-transform"]):hover, body.hover-fx .wa-float-btn:not([style*="--ux-h-transform"]):hover, body.hover-fx .wa-float-btn-cta:not([style*="--ux-h-transform"]):hover, body.hover-fx .slider-btn:not([style*="--ux-h-transform"]):hover, body.hover-fx .social-link:not([style*="--ux-h-transform"]):hover, body.hover-fx a.builder-element[style*="padding"]:not([style*="--ux-h-transform"]):hover, body.hover-fx a.builder-element[style*="background"]:not([style*="--ux-h-transform"]):hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 8px 18px rgba(0,0,0,0.18); }
-        body.hover-fx .nav-menu a:not(.nav-cta-btn) { transition: opacity .2s ease, transform .2s ease, color .2s ease, text-shadow .2s ease; }
-        body.hover-fx .nav-menu a:not(.nav-cta-btn):hover { opacity: 0.72; }
+    .cta-band {
+      position:relative; padding:6rem 0; text-align:center;
+      background:linear-gradient(180deg,rgba(11,18,32,0.75),rgba(11,18,32,0.9)), url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1600&q=80') center/cover no-repeat;
+    }
+    .cta-band h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(1.9rem,4vw,2.6rem); margin-bottom:1rem; }
+    .cta-band p { color:var(--text-muted); max-width:520px; margin:0 auto 2rem; font-size:1.05rem; }
 
-        /* Estados de botón (hover / activo) definidos en el editor */
-        .ux-btn-states {
-            transition: background-color .2s ease, color .2s ease, border-color .2s ease,
-                transform .2s ease, box-shadow .2s ease, filter .2s ease, opacity .2s ease;
-        }
-        .ux-btn-states:hover {
-            background-color: var(--ux-h-bg) !important;
-            color: var(--ux-h-color) !important;
-            border-color: var(--ux-h-border) !important;
-        }
-        .ux-btn-states[style*="--ux-h-transform"]:hover { transform: var(--ux-h-transform); }
-        .ux-btn-states[style*="--ux-h-shadow"]:hover { box-shadow: var(--ux-h-shadow); }
-        .ux-btn-states[style*="--ux-h-filter"]:hover { filter: var(--ux-h-filter); }
-        .ux-btn-states:active {
-            background-color: var(--ux-a-bg) !important;
-            color: var(--ux-a-color) !important;
-            border-color: var(--ux-a-border) !important;
-        }
-        .ux-btn-states[style*="--ux-a-transform"]:active { transform: var(--ux-a-transform); }
-        .ux-btn-states[style*="--ux-a-shadow"]:active { box-shadow: var(--ux-a-shadow); }
-        .ux-btn-states[style*="--ux-a-filter"]:active { filter: var(--ux-a-filter); }
-        /* Hero dividido: centrar texto en toda la altura de la columna */
-        .hero-split-grid { align-items: stretch !important; }
-        .hero-split-grid .hs-text {
-            height: 100%;
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-sizing: border-box;
-        }
-        .hero-split-grid .hs-img {
-            height: 100%;
-            min-height: 440px;
-            align-self: stretch;
-        }
-        @media (max-width: 900px) {
-            .hero-split-grid .hs-img { min-height: 280px; height: auto; }
-            .hero-split-grid .hs-text { height: auto; min-height: 0; }
-        }
-    </style>
+    .faq { background:#0e1628; }
+    .faq-list { max-width:720px; margin:2.5rem auto 0; display:flex; flex-direction:column; gap:0.75rem; }
+    .faq-item { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+    .faq-item.active { border-color:rgba(59,130,246,0.4); }
+    .faq-question { width:100%; display:flex; align-items:center; justify-content:space-between; padding:1.15rem 1.35rem; background:none; color:#fff; font-size:1rem; font-weight:500; text-align:left; gap:1rem; }
+    .faq-question span.icon { width:28px; height:28px; border-radius:8px; background:rgba(255,255,255,0.08); display:grid; place-items:center; font-size:1.1rem; flex-shrink:0; transition:transform 0.3s; }
+    .faq-item.active .faq-question span.icon { transform:rotate(45deg); background:rgba(59,130,246,0.25); }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+    .faq-item.active .faq-answer { max-height:300px; }
+    .faq-answer p { padding:0 1.35rem 1.25rem; color:var(--text-muted); font-size:0.95rem; }
+
+    .footer { background:#080e1a; border-top:1px solid var(--border); padding:3rem 0 1.5rem; }
+    .footer-top { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1.5rem; margin-bottom:2.5rem; }
+    .footer-brand { display:flex; align-items:center; gap:0.6rem; font-weight:700; font-size:1.1rem; }
+    .footer-links { display:flex; gap:1.5rem; list-style:none; flex-wrap:wrap; }
+    .footer-links a { color:var(--text-muted); font-size:0.9rem; }
+    .footer-links a:hover { color:#fff; }
+    .footer-social { display:flex; gap:0.75rem; flex-wrap:wrap; }
+    .social-btn {
+      width:40px; height:40px; border-radius:12px; background:rgba(255,255,255,0.06);
+      border:1px solid var(--border); display:grid; place-items:center; color:var(--text-muted); font-size:1rem;
+      transition:all 0.2s;
+    }
+    .social-btn:hover { background:rgba(59,130,246,0.2); color:#fff; border-color:rgba(59,130,246,0.3); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:1.5rem; text-align:center; color:#64748b; font-size:0.85rem; }
+
+    /* Modals */
+    .modal-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:10001;
+      display:none; place-items:center; padding:1rem; overflow-y:auto;
+    }
+    .modal-overlay.show { display:grid; }
+    .modal {
+      background:#1e293b; border-radius:16px; padding:1.75rem; width:min(100%,520px);
+      border:1px solid rgba(255,255,255,0.1); max-height:90vh; overflow-y:auto;
+    }
+    .modal h3 { font-size:1.15rem; margin-bottom:0.5rem; }
+    .modal p { color:var(--text-muted); font-size:0.9rem; margin-bottom:0.75rem; }
+    .modal label { display:block; font-size:0.85rem; font-weight:500; margin-bottom:0.35rem; color:#cbd5e1; }
+    .modal input[type="text"], .modal input[type="url"], .modal textarea, .modal select {
+      width:100%; padding:0.7rem 1rem; border-radius:10px; border:1px solid rgba(255,255,255,0.15);
+      background:#0f172a; color:#fff; font-size:0.95rem; margin-bottom:1rem; font-family:inherit;
+    }
+    .modal textarea { min-height:80px; resize:vertical; }
+    .modal input:focus, .modal textarea:focus, .modal select:focus { outline:2px solid var(--primary); }
+    .modal-actions { display:flex; gap:0.75rem; justify-content:flex-end; flex-wrap:wrap; }
+    .modal-actions .btn { padding:0.55rem 1.2rem; font-size:0.875rem; }
+    .file-row { display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap; }
+    .file-row input[type="file"] { display:none; }
+    .file-btn {
+      padding:0.55rem 1rem; border-radius:10px; background:rgba(139,92,246,0.25); color:#c4b5fd;
+      border:1px solid rgba(139,92,246,0.4); font-size:0.85rem; font-weight:600; cursor:pointer;
+    }
+    .file-btn:hover { background:rgba(139,92,246,0.4); }
+    .or-divider { text-align:center; color:var(--text-muted); font-size:0.8rem; margin:0.5rem 0 1rem; }
+
+    .meta-panel { display:none; }
+    body.edit-mode .meta-panel-trigger { display:inline-flex; }
+
+    @media (max-width:720px) {
+      .nav-links { display:none; }
+      .menu-toggle { display:block; }
+      .nav-links.open {
+        display:flex; flex-direction:column; position:absolute; top:72px; left:0; right:0;
+        background:rgba(11,18,32,0.98); padding:1.5rem; gap:1rem; border-bottom:1px solid var(--border);
+      }
+    }
+    @media (max-width:480px) {
+      .hero-cta { flex-direction:column; align-items:stretch; }
+      .hero-cta .btn { width:100%; }
+    }
+  </style>
 </head>
-<body class="hover-fx">
-    <div class="page-wrapper">
+<body class="">
+
+  
+
+  <!-- Image modal (URL or file) -->
+  
+
+  <!-- Link modal for designs -->
+  
+
+  <!-- Meta / SEO modal -->
+  
+
+  <!-- Social link modal -->
+  
+
+  <!-- Toolbar -->
+  
+
+  <header class="header scrolled" id="header">
+    <div class="container nav">
+      <a href="#" class="logo">
+        <span class="logo-icon">✉</span>
+        <span data-edit="logoText">Invita VIP Click</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#servicios" data-edit="nav1">Servicios</a></li>
+        <li><a href="#pasos" data-edit="nav2">Cómo funciona</a></li>
+        <li><a href="#disenos" data-edit="nav3">Ver Diseños</a></li>
+        <li><a href="#faq" data-edit="nav4">FAQ</a></li>
+        <li><a href="#contacto" class="btn btn-primary" data-edit="navCta">Contáctanos</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú">☰</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="badge" data-edit="heroBadge">✦ Invitaciones digitales premium</div>
+      <h1 data-edit="heroTitle">Invitaciones digitales que enamoran a primera vista</h1>
+      <p data-edit="heroDesc">Diseños elegantes para bodas, XV años, cumpleaños, bautizos y más. Tú celebras, nosotros creamos la invitación perfecta.</p>
+      <div class="hero-cta">
+        <a href="#disenos" class="btn btn-primary" data-edit="heroBtn1">Ver Diseños</a>
+        <a href="#pasos" class="btn btn-outline" data-edit="heroBtn2">Cómo funciona</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong data-edit="stat1Val">+2,400</strong><span data-edit="stat1Label">Invitaciones entregadas</span></div>
+        <div class="stat"><strong data-edit="stat2Val">4.9 ★</strong><span data-edit="stat2Label">Valoración de clientes</span></div>
+        <div class="stat"><strong data-edit="stat3Val">24-48h</strong><span data-edit="stat3Label">Tiempo de entrega</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-hero" id="servicios" style="background: linear-gradient(rgba(11, 18, 32, 0.7), rgba(11, 18, 32, 0.92)), url(&quot;https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&amp;q=80&quot;) center center / cover no-repeat;">
+    <div class="container">
+      <div class="content">
+        <h2 data-edit="featTitle">Tu evento merece una invitación a tu altura</h2>
+        <p data-edit="featDesc">Olvida los PDFs aburridos y los mensajes de texto. Con una invitación digital tus invitados reciben un enlace elegante, con countdown, galería, confirmación de asistencia y todo lo que necesitan saber — directo en su WhatsApp.</p>
+        <a href="#contacto" class="btn btn-gold" data-edit="featBtn">Quiero mi invitación</a>
         
-                
-                <!-- Menú Inicial -->
-                <header class="" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 30px; background-color: rgb(17, 17, 17); border-bottom: 1px solid rgb(38, 38, 38); font-family: var(--font-heading); flex-wrap: wrap; position: relative;">
-                        <div class="brand-container" style="display:flex; align-items:center; gap:12px;">
-                            <img src="imagenes/icono.png" class="logo-img" alt="Logo" style="height:40px; width:auto; object-fit:contain;">
-                            <span class="" style="font-weight:700; font-size:22px; color:#ffffff;" data-ux-text="1">Invita VIP Click</span>
-                        </div>
-                        <button class="menu-toggle" onclick="toggleMenu(this)" style="display:none; color:#ffffff;" aria-label="Abrir menú"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
-                        <nav class="nav-menu" style="display:flex; gap:20px; font-size:15px; align-items:center;">
-                            
-                            <a href="#disenos" class="" style="color:#ffffff; text-decoration:none; font-weight:600;" data-ux-text="1">Servicios</a><a href="#servicios" class="" style="color:#ffffff; text-decoration:none; font-weight:600;" data-ux-text="1">Como funciona</a><a href="#ejemplos" class="" style="color:#ffffff; text-decoration:none; font-weight:600;" data-ux-text="1">Ver Diseños</a><a href="#faq" class="" style="color:#ffffff; text-decoration:none; font-weight:600;" data-ux-text="1">FAQ</a>
-                            
-                            
-                            
-                        <a href="#ejemplos" class="nav-cta-btn" data-ux-text="1" style="display: inline-block; background-color: rgb(0, 122, 204); color: rgb(255, 255, 255); text-decoration: none; padding: 9px 20px; border-radius: 24px; font-weight: 700; white-space: nowrap;">Contáctanos</a></nav></header>
-
-                <!-- Hero Section -->
-                <section id="inicio" class="hero-section" style="padding: 100px 20px; text-align: center; background-image: linear-gradient(rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.1)), url(&quot;imagenes/HERO.jpg&quot;); background-size: cover; background-position: center center; color: rgb(255, 255, 255); font-family: var(--font-body);">
-                    <h1 class="" style="font-size: 42px; margin-bottom: 15px; font-weight: 800; font-family:var(--font-heading);" data-ux-text="1">Invitaciones digitales que enamoran a primera vista</h1>
-                    <p class="" style="font-size: 18px; max-width: 650px; margin: 0 auto 30px auto; opacity: 0.95; line-height: 1.6;" data-ux-text="1">Diseños elegantes para bodas, XV años, cumpleaños, bautizos y más. Tú celebras, nosotros creamos la invitación perfecta</p>
-                    <a href="#ejemplos" class="" style="display: inline-block; background-color: var(--color-primary); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 30px; font-weight: 700; font-size: 15px;" data-ux-text="1">Ver Diseños</a>
-                </section>
-
-            <section class="" id="inicio-2" style="padding: 100px 20px; text-align: center; background-image: linear-gradient(rgba(0, 0, 0, 0.73), rgba(0, 0, 0, 0.73)), url(&quot;imagenes/593.jpg&quot;); background-size: cover; background-position: center center; color: rgb(255, 255, 255); font-family: var(--font-body);">
-                        <h1 class="" style="font-size:42px; margin-bottom:15px; font-weight:800; font-family:var(--font-heading);" data-ux-text="1">Tu evento merece una invitación a tu altura</h1>
-                        <p class="" style="font-size:18px; max-width:600px; margin:0 auto 25px auto; color:#f1f5f9; line-height:1.6;" data-ux-text="1">Olvida los PDFs aburridos y los mensajes de texto. Con una invitación digital tus invitados reciben un enlace elegante, con countdown, galería, confirmación de asistencia y todo lo que necesita saber directo en su WhatsApp.
-</p>
-                        </section><section class="" id="servicios" style="padding: 60px 20px; background-color: rgb(15, 23, 42); text-align: center; color: rgb(255, 255, 255); font-family: var(--font-body);">
-                        <h2 class="" style="font-size:30px; margin-bottom:40px; color:#ffffff; font-family:var(--font-heading);" data-ux-text="1">En 3 simples pasos</h2>
-                        <div class="services-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; max-width:1000px; margin:0 auto;">
-                            <div class="service-card" style="background:#1e293b; padding:30px; border-radius:10px; border:1px solid #334155; text-align:left;">
-                                <h3 class="" style="font-size:20px; margin-bottom:10px; color:var(--color-primary-light);" data-ux-text="1">Elige tu diseño</h3>
-                                <p class="" style="font-size:14px; color:#94a3b8; line-height:1.6;" data-ux-text="1"></p><div>Explora nuestras plantillas por tipo de evento o pídenos un diseño personalizado.</div><div><br></div><p></p>
-                            </div>
-                            <div class="service-card" style="background:#1e293b; padding:30px; border-radius:10px; border:1px solid #334155; text-align:left;">
-                                <h3 class="" style="font-size:20px; margin-bottom:10px; color:var(--color-primary-light);" data-ux-text="1">Cuéntanos los detalles</h3>
-                                <p class="" style="font-size:14px; color:#94a3b8; line-height:1.6;" data-ux-text="1"></p><div>Fecha, lugar, temática y cualquier texto especial. Nosotros nos encargamos del resto.</div><div><br></div><p></p>
-                            </div><div class="service-card" style="background:#1e293b; padding:30px; border-radius:10px; border:1px solid #334155; text-align:left;">
-                                <h3 class="" style="font-size:20px; margin-bottom:10px; color:var(--color-primary-light);" data-ux-text="1">Recibe tu enlace</h3>
-                                <p class="" style="font-size:14px; color:#94a3b8; line-height:1.6;" data-ux-text="1"></p><div>Te entregamos una invitación lista para compartir por WhatsApp, redes o correo.</div><div><br></div><p></p>
-                            </div>
-                        </div></section><section class="" id="disenos" style="padding: 60px 20px; background-color: rgb(255, 255, 255); text-align: center; font-family: var(--font-body);">
-                        <h2 class="" style="font-size:30px; margin-bottom:40px; color:#0f172a; font-family:var(--font-heading);" data-ux-text="1">Diseños para cada ocasión</h2>
-                        <div class="services-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:30px; max-width:1000px; margin:0 auto;">
-                            <div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">💍</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1">Bodas</h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">🌸</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1">XV Años</h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">🎂</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1">Cumpleaños</h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">⛪</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1">Bautizos</h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">🍼</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1">Baby Shower</h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">✨</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1">y más...</h3>
-                                
-                            </div>
-                            
-                        </div></section><section class="" id="servicios-2-copy" style="padding: 60px 20px; background-color: rgb(15, 23, 42); text-align: center; font-family: var(--font-body);">
-                        <h2 class="" style="font-size:30px; margin-bottom:40px; color:#0f172a; font-family:var(--font-heading);" data-ux-text="1"><font color="#ffffff">Todo lo que tu invitación necesita</font></h2>
-                        <div class="services-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:30px; max-width:1000px; margin:0 auto;">
-                            <div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">⏱️</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1"><div><font color="#ffffff">Cuenta regresiva al gran día</font></div><div><br></div></h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">📸</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1"><font color="#ffffff">Galería de fotos</font></h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">✅</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1"><font color="#ffffff">Confirmación de asistencia (RSVP) en un toque</font></h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">📍</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1"><font color="#ffffff">Mapa con la ubicación del evento</font></h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">📱</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1"><div><font color="#ffffff">Diseño perfecto para celular</font></div><div><br></div></h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">🔗</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1"><div><font color="#ffffff">Enlace fácil de compartir por WhatsApp</font></div><div><br></div></h3>
-                                
-                            </div><div class="service-card" style="display:flex; flex-direction:column; align-items:center;">
-                                <div class="" style="width:60px; height:60px; background-color:#e0f2fe; color:var(--color-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin-bottom:15px;" data-ux-text="1">🎨</div>
-                                <h3 class="" style="font-size:18px; margin-bottom:8px; color:#0f172a;" data-ux-text="1"><font color="#ffffff">BodasVista previa elegante al compartir en redes</font><div><span style="font-family: var(--font-body);"><br></span></div></h3>
-                                
-                            </div>
-                            
-                        </div></section><section class="" id="verdisenos" style="padding: 100px 20px; text-align: center; background-image: linear-gradient(rgba(0, 0, 0, 0.73), rgba(0, 0, 0, 0.73)), url(&quot;imagenes/3373.jpg&quot;); background-size: cover; background-position: center center; color: rgb(255, 255, 255); font-family: var(--font-body);">
-                        <h1 class="" style="font-size:42px; margin-bottom:15px; font-weight:800; font-family:var(--font-heading);" data-ux-text="1"></h1><h1 class="" style="font-size: 42px; margin-bottom: 15px; font-weight: 800; font-family: var(--font-heading);" data-ux-text="1">Diseño profesional, sin complicaciones</h1>
-                        <p class="" style="font-size:18px; max-width:600px; margin:0 auto 25px auto; color:#f1f5f9; line-height:1.6;" data-ux-text="1"></p><div>Somos especialistas en invitaciones digitales. Cada diseño se cuida al detalle para que refleje tu estilo y la importancia de tu evento. Tú solo eliges, nosotros diseñamos, ajustamos y entregamos.</div><div><br></div><div class="button-group" style="display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: 12px; width: 100%; margin-bottom: 15px;"></div><p></p>
-                        </section><section class="" style="padding: 60px 20px; background-color: rgb(255, 255, 255); font-family: var(--font-body);" id="ejemplos">
-                        <div class="columns-grid" data-columns="5" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:20px; max-width:1150px; margin:0 auto; align-items:stretch;">
-                            <div class="column-item" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:24px; min-width:0;">
-                                <h3 class="" style="font-size: 19px; margin-bottom: 10px; color: rgb(15, 23, 42); font-family: var(--font-heading); text-align: center;" data-ux-text="1">BODA</h3>
-                                <p class="" style="font-size:14px; color:#64748b; line-height:1.6;" data-ux-text="1"><br><a class="img-link-wrap" href="https://invitavipclick.base44.app/i/boda-de-juan-y-rosa" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; text-decoration: none; line-height: 0; font-size: 0px; margin: 0px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; gap: 0px;"><img src="imagenes/boda.jpg" class="" style="max-width: 100%; width: 100%; height: auto; display: block; border-radius: 4px; margin: 0px auto; object-fit: contain; background: transparent; vertical-align: top; line-height: 0;" data-fitted="1"></a></p>
-                            </div><div class="column-item" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:24px; min-width:0;">
-                                <h3 class="" style="font-size: 19px; margin-bottom: 10px; color: rgb(15, 23, 42); font-family: var(--font-heading); text-align: center;" data-ux-text="1">XV AÑOS</h3>
-                                <p class="" style="font-size:14px; color:#64748b; line-height:1.6;" data-ux-text="1"><br><a class="img-link-wrap" href="https://invitavipclick.base44.app/i/xv-anos-de-ximena" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; text-decoration: none; line-height: 0; font-size: 0px; margin: 0px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; gap: 0px;"><img src="imagenes/xv.jpg" class="" style="max-width: 100%; width: 100%; height: auto; display: block; border-radius: 4px; margin: 0px auto; object-fit: contain; background: transparent; vertical-align: top; line-height: 0;" data-fitted="1"></a></p>
-                            </div><div class="column-item" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:24px; min-width:0;">
-                                <h3 class="" style="font-size: 19px; margin-bottom: 10px; color: rgb(15, 23, 42); font-family: var(--font-heading); text-align: center;" data-ux-text="1">CUMPLEAÑOS</h3>
-                                <p class="" style="font-size:14px; color:#64748b; line-height:1.6;" data-ux-text="1"><br><a class="img-link-wrap" href="https://invitavipclick.base44.app/i/cumpleanos-de-esther" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; text-decoration: none; line-height: 0; font-size: 0px; margin: 0px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; gap: 0px;"><img src="imagenes/cumple.jpg" class="" style="max-width: 100%; width: 100%; height: auto; display: block; border-radius: 4px; margin: 0px auto; object-fit: contain; background: transparent; vertical-align: top; line-height: 0;" data-fitted="1"></a></p>
-                            </div><div class="column-item" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:24px; min-width:0;">
-                                <h3 class="" style="font-size: 19px; margin-bottom: 10px; color: rgb(15, 23, 42); font-family: var(--font-heading); text-align: center;" data-ux-text="1">BAUTIZO</h3>
-                                <p class="" style="font-size:14px; color:#64748b; line-height:1.6;" data-ux-text="1"><br><a class="img-link-wrap" href="https://invitavipclick.base44.app/i/bautizo-de-julian" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; text-decoration: none; line-height: 0; font-size: 0px; margin: 0px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; gap: 0px;"><img src="imagenes/bautizo.jpg" class="" style="max-width: 100%; width: 100%; height: auto; display: block; border-radius: 4px; margin: 0px auto; object-fit: contain; background: transparent; vertical-align: top; line-height: 0;" data-fitted="1"></a></p>
-                            </div><div class="column-item" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:24px; min-width:0;">
-                                <h3 class="" style="font-size: 19px; margin-bottom: 10px; color: rgb(15, 23, 42); font-family: var(--font-heading); text-align: center;" data-ux-text="1">BABY SHOWER</h3>
-                                <p class="" style="font-size:14px; color:#64748b; line-height:1.6;" data-ux-text="1"><br><a class="img-link-wrap" href="https://invitavipclick.base44.app/i/baby-shower-de-paty" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; text-decoration: none; line-height: 0; font-size: 0px; margin: 0px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: transparent; gap: 0px;"><img src="imagenes/babyshower.jpg" class="" style="max-width: 100%; width: 100%; height: auto; display: block; border-radius: 4px; margin: 0px auto; object-fit: contain; background: transparent; vertical-align: top; line-height: 0;" data-fitted="1"></a></p>
-                            </div>
-                            
-                            
-                            
-                            
-                        </div>
-                        <style>
-                            @media (max-width: 900px) { .columns-grid[data-columns="5"] { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important; } }
-                            @media (max-width: 640px) { .columns-grid[data-columns="5"] { grid-template-columns: 1fr !important; } }
-                        </style></section><section class="" id="faq" style="padding: 70px 20px; background-color: rgb(15, 23, 42); font-family: var(--font-body);">
-                        <h2 class="" style="font-size:30px; margin-bottom:35px; color:#ffffff; text-align:center; font-family:var(--font-heading);" data-ux-text="1">Preguntas Frecuentes</h2>
-                        <div class="faq-list" style="max-width:750px; margin:0 auto;">
-                            
-                            <div class="faq-item" style="background: rgb(30, 41, 59); border-radius: 10px; padding: 0px 20px; margin-bottom: 12px;">
-                                <div class="faq-question" onclick="toggleFaq(this)" style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:18px 0; cursor:pointer;">
-                                    <span class="" style="font-size:16px; font-weight:600; color:#ffffff;" data-ux-text="1">¿Cómo recibo mi invitación?</span>
-                                    <span class="faq-icon" style="font-size: 20px; color: var(--color-primary-light); font-weight: 700; flex-shrink: 0; transition: transform 0.3s; transform: rotate(0deg);">+</span>
-                                </div>
-                                <div class="faq-answer" style="max-height: 0px; overflow: hidden; transition: max-height 0.3s;">
-                                    <p class="" style="padding:0 0 18px 0; color:#94a3b8; font-size:14px; line-height:1.6;" data-ux-text="1">Te enviamos un enlace que puedes compartir por WhatsApp o redes.</p>
-                                </div>
-                            </div><div class="faq-item" style="background:#1e293b; border-radius:10px; padding:0 20px; margin-bottom:12px;">
-                                <div class="faq-question" onclick="toggleFaq(this)" style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:18px 0; cursor:pointer;">
-                                    <span class="" style="font-size:16px; font-weight:600; color:#ffffff;" data-ux-text="1">¿Puedo personalizar el diseño?</span>
-                                    <span class="faq-icon" style="font-size: 20px; color: var(--color-primary-light); font-weight: 700; flex-shrink: 0; transition: transform 0.3s; transform: rotate(0deg);">+</span>
-                                </div>
-                                <div class="faq-answer" style="max-height: 0px; overflow: hidden; transition: max-height 0.3s;">
-                                    <p class="" style="padding:0 0 18px 0; color:#94a3b8; font-size:14px; line-height:1.6;" data-ux-text="1">Sí, ajustamos colores, fotos y textos según tu evento.</p>
-                                </div>
-                            </div>
-                            <div class="faq-item" style="background:#1e293b; border-radius:10px; padding:0 20px; margin-bottom:12px;">
-                                <div class="faq-question" onclick="toggleFaq(this)" style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:18px 0; cursor:pointer;">
-                                    <span class="" style="font-size:16px; font-weight:600; color:#ffffff;" data-ux-text="1">¿Mis invitados necesitan instalar algo?</span>
-                                    <span class="faq-icon" style="font-size: 20px; color: var(--color-primary-light); font-weight: 700; flex-shrink: 0; transition: transform 0.3s; transform: rotate(0deg);">+</span>
-                                </div>
-                                <div class="faq-answer" style="max-height: 0px; overflow: hidden; transition: max-height 0.3s;">
-                                    <p class="" style="padding:0 0 18px 0; color:#94a3b8; font-size:14px; line-height:1.6;" data-ux-text="1">&nbsp;No, solo abren el enlace en su teléfono.</p>
-                                </div>
-                            </div><div class="faq-item" style="background:#1e293b; border-radius:10px; padding:0 20px; margin-bottom:12px;">
-                                <div class="faq-question" onclick="toggleFaq(this)" style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:18px 0; cursor:pointer;">
-                                    <span class="" style="font-size:16px; font-weight:600; color:#ffffff;" data-ux-text="1">¿Cuánto tarda la entrega?</span>
-                                    <span class="faq-icon" style="font-size: 20px; color: var(--color-primary-light); font-weight: 700; flex-shrink: 0; transition: transform 0.3s; transform: rotate(0deg);">+</span>
-                                </div>
-                                <div class="faq-answer" style="max-height: 0px; overflow: hidden; transition: max-height 0.3s;">
-                                    <p class="" style="padding:0 0 18px 0; color:#94a3b8; font-size:14px; line-height:1.6;" data-ux-text="1">Entre 24 y 48 horas una vez confirmados los detalles.</p>
-                                </div>
-                            </div>
-                        </div></section><footer class="" id="contacto" style="padding: 30px 20px; background-color: rgb(255, 255, 255); color: rgb(148, 163, 184); text-align: center; font-size: 14px; font-family: var(--font-body);">
-                        <div class="brand-container" style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:8px;">
-                            <img src="imagenes/icono.png" class="logo-img" alt="Logo" style="height: 40px; width: auto; object-fit: contain;">
-                            <p class="" style="font-weight:700; color:#ffffff; font-size:16px; margin:0;" data-ux-text="1"><font color="#000000">Invita VIP Click</font></p>
-                        </div>
-                        <div class="social-bar" style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center;"><a href="https://www.facebook.com/invitavipclick" target="_blank" rel="noopener" class="social-link" data-net="facebook" title="Facebook" style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#ffffff; text-decoration:none;" data-ux-text="1"><img class="social-icon" alt="Facebook" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Cpath%20fill%3D%22%231877F2%22%20d%3D%22M22.675%200H1.325C.593%200%200%20.593%200%201.325v21.351C0%2023.407.593%2024%201.325%2024H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1%201.893-4.788%204.659-4.788%201.325%200%202.463.099%202.795.143v3.24l-1.918.001c-1.504%200-1.795.715-1.795%201.763v2.313h3.587l-.467%203.622h-3.12V24h6.116c.73%200%201.323-.593%201.323-1.324V1.325C24%20.593%2023.407%200%2022.675%200z%22%2F%3E%3C%2Fsvg%3E" style="width:22px; height:22px; display:block; object-fit:contain;"></a></div>
-                        <p class="" style="margin-top:12px;" data-ux-text="1">© 2026 Todos los derechos reservados.</p></footer><div class="spacer-element" data-spacer="1" style="height: 53px; width: 100%; background: transparent; border: 0px; pointer-events: auto;"></div>
+      </div>
     </div>
-    <div class="fixed-frame"><a data-wa-message="Hola, vi su página web y me gustaría más información." href="https://wa.me/5213121076890?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="wa-float-btn wa-float-btn-cta" style="background-color: rgb(37, 211, 102); color: rgb(255, 255, 255); display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 50px; box-shadow: rgba(0, 0, 0, 0.3) 2px 5px 15px; text-decoration: none; font-family: var(--font-body); font-weight: 600; font-size: 14px; white-space: nowrap; position: fixed; right: auto; bottom: 25px; left: 50%; z-index: 9999 !important; margin: 0px !important; transform: translateX(-50%);" data-ux-text="1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="fill:white; stroke:none; flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"></path><path d="M12 2a10 10 0 0 0-8.484 15.302L2 22l4.81-1.252A10 10 0 1 0 12 2zm0 18a7.95 7.95 0 0 1-4.062-1.116l-.291-.173-2.857.745.759-2.787-.19-.302A7.95 7.95 0 1 1 12 20z"></path></svg><span class="wa-cta-text">Escríbenos por WhatsApp</span></a></div>
-    <script>
-        function toggleMenu(btn) {
-            const header = btn.closest('header');
-            if (header) {
-                const isOpening = !header.classList.contains('menu-open');
-                header.classList.toggle('menu-open');
-                const nav = header.querySelector('.nav-menu');
-                if (nav) nav.classList.toggle('nav-active');
-                document.body.style.overflow = isOpening ? 'hidden' : '';
-            }
-        }
+  </section>
 
-        // Cierra el overlay del menú al hacer clic en un enlace o presionar Escape
-        document.addEventListener('click', function(e) {
-            const link = e.target.closest('.nav-menu a');
-            if (link) {
-                const header = link.closest('header');
-                if (header && header.classList.contains('menu-open')) {
-                    header.classList.remove('menu-open');
-                    const nav = header.querySelector('.nav-menu');
-                    if (nav) nav.classList.remove('nav-active');
-                    document.body.style.overflow = '';
-                }
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('header.menu-open').forEach(header => {
-                    header.classList.remove('menu-open');
-                    const nav = header.querySelector('.nav-menu');
-                    if (nav) nav.classList.remove('nav-active');
-                });
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Enlaces ancla (#seccion): desplaza con el alto del menú fijo descontado
-        function anchorOffset() {
-            let offset = 20;
-            document.querySelectorAll('.fixed-frame > header, header').forEach(h => {
-                const cs = getComputedStyle(h);
-                if (cs.position === 'fixed' && cs.display !== 'none' && parseFloat(cs.top || '0') < 5) {
-                    offset = Math.max(offset, h.getBoundingClientRect().height + 12);
-                }
-            });
-            return offset;
-        }
-
-        function scrollToAnchor(hash, push) {
-            const id = decodeURIComponent((hash || '').replace(/^#/, ''));
-            if (!id) return false;
-            const target = document.getElementById(id) || document.getElementsByName(id)[0];
-            if (!target) return false;
-            document.documentElement.style.setProperty('--anchor-offset', anchorOffset() + 'px');
-            const top = target.getBoundingClientRect().top + window.pageYOffset - anchorOffset();
-            window.scrollTo({ top: top < 0 ? 0 : top, behavior: 'smooth' });
-            if (push && history.replaceState) history.replaceState(null, '', '#' + id);
-            return true;
-        }
-
-        document.addEventListener('click', function(e) {
-            const a = e.target.closest('a[href*="#"]');
-            if (!a) return;
-            const href = a.getAttribute('href') || '';
-            if (!href.startsWith('#') || href === '#') return;
-            if (a.target === '_blank') return;
-            if (scrollToAnchor(href, true)) e.preventDefault();
-        });
-
-        window.addEventListener('load', function() {
-            if (location.hash) setTimeout(() => scrollToAnchor(location.hash, false), 60);
-        });
-        window.addEventListener('hashchange', function() { scrollToAnchor(location.hash, false); });
-
-        function toggleFaq(el) {
-            const item = el.closest('.faq-item');
-            if (!item) return;
-            const answer = item.querySelector('.faq-answer');
-            const icon = el.querySelector('.faq-icon');
-            const isOpen = item.classList.toggle('faq-open');
-            if (answer) {
-                answer.style.maxHeight = isOpen ? answer.scrollHeight + 'px' : '0px';
-            }
-            if (icon) icon.style.transform = isOpen ? 'rotate(45deg)' : 'rotate(0deg)';
-        }
-
-        /* ===== Carrusel: loop infinito real (clon de la primera al final) ===== */
-        function sliderRealSlides(track) {
-            return Array.prototype.slice.call(track.querySelectorAll('.slide-item')).filter(function (s) {
-                return !s.classList.contains('slide-clone');
-            });
-        }
-
-        function sliderUpdateDots(wrapper, idx) {
-            wrapper.querySelectorAll('.slider-dot').forEach(function (d, i) {
-                d.classList.toggle('active', i === idx);
-            });
-        }
-
-        function exportApplyFade(sec, index) {
-            var track = sec.querySelector('.slider-track');
-            if (!track) return;
-            var real = sliderRealSlides(track);
-            if (!real.length) return;
-            if (index < 0 || index >= real.length) index = 0;
-            real.forEach(function (s, i) { s.classList.toggle('slide-active', i === index); });
-            track.style.transform = 'none';
-            track.setAttribute('data-index', index);
-            sec.querySelectorAll('.slider-dot').forEach(function (d, i) { d.classList.toggle('active', i === index); });
-        }
-
-        function initExportSlider(sec) {
-            var wrapper = sec.querySelector('.slider-wrapper');
-            if (!wrapper) return;
-            var track = wrapper.querySelector('.slider-track');
-            if (!track) return;
-
-            track.querySelectorAll('.slide-clone').forEach(function (c) { c.remove(); });
-            var real = sliderRealSlides(track);
-            if (real.length > 1) {
-                var clone = real[0].cloneNode(true);
-                clone.classList.add('slide-clone');
-                clone.removeAttribute('id');
-                track.appendChild(clone);
-            }
-            track.style.transition = 'none';
-            track.style.transform = 'translateX(0%)';
-            track.setAttribute('data-index', '0');
-            track.setAttribute('data-anim', '0');
-            void track.offsetHeight;
-            track.style.transition = '';
-            sliderUpdateDots(wrapper, 0);
-            if (sec.getAttribute('data-transition') === 'fade') exportApplyFade(sec, 0);
-        }
-
-        function moveSlider(btn, dir) {
-            var wrapper = btn.closest('.slider-wrapper');
-            if (!wrapper) return;
-            var track = wrapper.querySelector('.slider-track');
-            var real = sliderRealSlides(track);
-            var n = real.length;
-            if (n < 2) return;
-
-            var fadeSec = wrapper.closest('.slider-container-section');
-            if (fadeSec && fadeSec.getAttribute('data-transition') === 'fade') {
-                var c = parseInt(track.getAttribute('data-index') || '0', 10);
-                var nn = c + ((dir === -1) ? -1 : 1);
-                if (nn < 0) nn = n - 1;
-                if (nn >= n) nn = 0;
-                exportApplyFade(fadeSec, nn);
-                return;
-            }
-
-            if (track.getAttribute('data-anim') === '1') return;
-
-            var d = (dir === -1) ? -1 : 1;
-            var cur = parseInt(track.getAttribute('data-index') || '0', 10);
-            var next = cur + d;
-
-            // Hacia atrás desde la primera: salto instantáneo al clon y luego animar
-            if (next < 0) {
-                track.style.transition = 'none';
-                track.style.transform = 'translateX(-' + (n * 100) + '%)';
-                void track.offsetHeight;
-                track.style.transition = '';
-                next = n - 1;
-            }
-
-            track.setAttribute('data-anim', '1');
-            track.style.transform = 'translateX(-' + (next * 100) + '%)';
-            track.setAttribute('data-index', next);
-            sliderUpdateDots(wrapper, next >= n ? 0 : next);
-
-            setTimeout(function () {
-                if (next >= n) {
-                    // Ya estamos sobre el clon (idéntico a la 1ª): reposicionar sin animación
-                    track.style.transition = 'none';
-                    track.style.transform = 'translateX(0%)';
-                    track.setAttribute('data-index', '0');
-                    void track.offsetHeight;
-                    track.style.transition = '';
-                }
-                track.setAttribute('data-anim', '0');
-            }, 520);
-        }
-
-        function goToSlide(dot, index) {
-            var wrapper = dot.closest('.slider-wrapper');
-            if (!wrapper) return;
-            var track = wrapper.querySelector('.slider-track');
-            var fadeSec = wrapper.closest('.slider-container-section');
-            if (fadeSec && fadeSec.getAttribute('data-transition') === 'fade') { exportApplyFade(fadeSec, index); return; }
-            track.style.transition = 'none';
-            track.style.transform = 'translateX(-' + (index * 100) + '%)';
-            track.setAttribute('data-index', index);
-            track.setAttribute('data-anim', '0');
-            void track.offsetHeight;
-            track.style.transition = '';
-            sliderUpdateDots(wrapper, index);
-        }
-
-        document.querySelectorAll('.slider-container-section').forEach(function (sec) {
-            initExportSlider(sec);
-
-            var isAutoplay = sec.getAttribute('data-autoplay') !== 'false';
-            var speed = parseInt(sec.getAttribute('data-speed') || '3000', 10);
-            if (speed < 800) speed = 800;
-            var nextBtn = sec.querySelector('.slider-btn-next');
-
-            if (isAutoplay && nextBtn) {
-                setInterval(function () {
-                    moveSlider(nextBtn, 1);
-                }, speed);
-            }
-        });
-    </script>
-
-    <!-- Botón discreto: volver arriba -->
-    <style>
-        #backToTop {
-            position: fixed;
-            right: 18px;
-            bottom: 18px;
-            z-index: 9998;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            border-radius: 999px;
-            background: rgba(17, 17, 17, 0.55);
-            color: #fff;
-            font-size: 16px;
-            line-height: 1;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity .3s ease, transform .3s ease, background .2s ease, visibility .3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-            -webkit-backdrop-filter: blur(6px);
-            backdrop-filter: blur(6px);
-        }
-        #backToTop:hover { background: rgba(17, 17, 17, 0.8); }
-        #backToTop.visible { opacity: .75; visibility: visible; transform: translateY(0); }
-        #backToTop.visible:hover { opacity: 1; }
-        @media print { #backToTop { display: none !important; } }
-
-        .ux-masonry-gallery { column-count: 3; column-gap: 12px; max-width: 1100px; margin: 0 auto; }
-        .ux-masonry-gallery .ux-masonry-item { break-inside: avoid; margin: 0 0 12px; display: block; width: 100%; border-radius: 10px; overflow: hidden; }
-        .ux-masonry-gallery[data-lightbox="1"] .ux-masonry-item { cursor: zoom-in; }
-        .ux-masonry-gallery .ux-masonry-item img { width: 100%; height: auto; display: block; border-radius: 10px; }
-        @media (max-width: 900px) { .ux-masonry-gallery { column-count: 2; } }
-        @media (max-width: 560px) { .ux-masonry-gallery { column-count: 1; } }
-        #uxLightbox { display:none; position:fixed; inset:0; z-index:99999; background:rgba(8,12,20,.92); align-items:center; justify-content:center; padding:24px; box-sizing:border-box; }
-        #uxLightbox.show { display:flex; }
-        #uxLightbox img { max-width:min(96vw,1200px); max-height:88vh; object-fit:contain; border-radius:8px; }
-        #uxLightbox .ux-lb-btn { position:absolute; border:1px solid rgba(255,255,255,.2); background:rgba(20,28,40,.85); color:#fff; width:44px; height:44px; border-radius:999px; font-size:22px; cursor:pointer; }
-        #uxLightbox .ux-lb-close { top:16px; right:16px; }
-        #uxLightbox .ux-lb-prev { left:16px; top:50%; transform:translateY(-50%); }
-        #uxLightbox .ux-lb-next { right:16px; top:50%; transform:translateY(-50%); }
-        #uxLightbox .ux-lb-count { position:absolute; bottom:18px; left:50%; transform:translateX(-50%); color:#cfe3ff; font-size:13px; }
-
-    </style>
-    <div id="uxLightbox" aria-modal="true" role="dialog">
-        <button type="button" class="ux-lb-btn ux-lb-close" title="Cerrar">×</button>
-        <button type="button" class="ux-lb-btn ux-lb-prev" title="Anterior">‹</button>
-        <img id="uxLightboxImg" alt="">
-        <button type="button" class="ux-lb-btn ux-lb-next" title="Siguiente">›</button>
-        <div class="ux-lb-count" id="uxLightboxCount"></div>
+  <section class="steps" id="pasos">
+    <div class="container text-center">
+      <span class="section-label" data-edit="stepsLabel">PROCESO SIMPLE</span>
+      <h2 class="section-title" data-edit="stepsTitle">En 3 simples pasos</h2>
+      <p class="section-desc" data-edit="stepsDesc">Sin complicaciones. Tú eliges, nosotros diseñamos y entregamos lista para compartir.</p>
+      <div class="steps-grid" id="stepsGrid">
+        <div class="step-card">
+          <div class="step-num" data-field="num">1</div>
+          <h3 data-field="title">Elige tu diseño</h3>
+          <p data-field="desc">Explora nuestras plantillas por tipo de evento o pídenos un diseño 100% personalizado.</p>
+          
+        </div>
+        <div class="step-card">
+          <div class="step-num" data-field="num">2</div>
+          <h3 data-field="title">Cuéntanos los detalles</h3>
+          <p data-field="desc">Fecha, lugar, temática y cualquier texto especial. Nosotros nos encargamos del resto.</p>
+          
+        </div>
+        <div class="step-card">
+          <div class="step-num" data-field="num">3</div>
+          <h3 data-field="title">Recibe tu enlace</h3>
+          <p data-field="desc">Te entregamos una invitación lista para compartir por WhatsApp, redes o correo.</p>
+          
+        </div></div>
+      
     </div>
-    <button id="backToTop" type="button" aria-label="Volver arriba" title="Volver arriba">&#9650;</button>
-    <script>
+  </section>
 
-        (function () {
-            var gallery = null, index = 0;
-            var lb = document.getElementById('uxLightbox');
-            var img = document.getElementById('uxLightboxImg');
-            var count = document.getElementById('uxLightboxCount');
-            if (!lb || !img) return;
-            function open(g, i) {
-                var items = g.querySelectorAll('.ux-masonry-item img');
-                if (!items.length) return;
-                gallery = g;
-                index = (i + items.length) % items.length;
-                img.src = items[index].src;
-                img.alt = items[index].alt || '';
-                if (count) count.textContent = (index + 1) + ' / ' + items.length;
-                lb.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
-            function close() {
-                lb.classList.remove('show');
-                gallery = null;
-                document.body.style.overflow = '';
-            }
-            function nav(d) {
-                if (!gallery) return;
-                var items = gallery.querySelectorAll('.ux-masonry-item img');
-                if (!items.length) return;
-                index = (index + d + items.length) % items.length;
-                img.src = items[index].src;
-                img.alt = items[index].alt || '';
-                if (count) count.textContent = (index + 1) + ' / ' + items.length;
-            }
-            document.addEventListener('click', function (e) {
-                var item = e.target.closest && e.target.closest('.ux-masonry-item');
-                if (!item) return;
-                var g = item.closest('.ux-masonry-gallery');
-                if (!g || g.getAttribute('data-lightbox') !== '1') return;
-                e.preventDefault();
-                var items = g.querySelectorAll('.ux-masonry-item');
-                var idx = Array.prototype.indexOf.call(items, item);
-                open(g, idx < 0 ? 0 : idx);
-            });
-            var closeBtn = lb.querySelector('.ux-lb-close');
-            var prevBtn = lb.querySelector('.ux-lb-prev');
-            var nextBtn = lb.querySelector('.ux-lb-next');
-            if (closeBtn) closeBtn.addEventListener('click', function (e) { e.stopPropagation(); close(); });
-            if (prevBtn) prevBtn.addEventListener('click', function (e) { e.stopPropagation(); nav(-1); });
-            if (nextBtn) nextBtn.addEventListener('click', function (e) { e.stopPropagation(); nav(1); });
-            lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
-            document.addEventListener('keydown', function (e) {
-                if (!lb.classList.contains('show')) return;
-                if (e.key === 'Escape') close();
-                if (e.key === 'ArrowLeft') nav(-1);
-                if (e.key === 'ArrowRight') nav(1);
-            });
-        })();
+  <section class="occasions" id="ocasiones">
+    <div class="container text-center">
+      <span class="section-label" data-edit="occLabel">PARA CADA MOMENTO</span>
+      <h2 class="section-title" data-edit="occTitle">Diseños para cada ocasión</h2>
+      <p class="section-desc" data-edit="occDesc">Sea cual sea tu celebración, tenemos el estilo perfecto para acompañarla.</p>
+      <div class="occasions-grid" id="occasionsGrid">
+        <div class="occasion-card">
+          <div class="occasion-icon" style="background:#eff6ff" data-field="icon">💍</div>
+          <h3 data-field="title">Bodas</h3>
+          
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon" style="background:#fdf2f8" data-field="icon">🌸</div>
+          <h3 data-field="title">XV Años</h3>
+          
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon" style="background:#fef3c7" data-field="icon">🎂</div>
+          <h3 data-field="title">Cumpleaños</h3>
+          
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon" style="background:#ecfdf5" data-field="icon">⛪</div>
+          <h3 data-field="title">Bautizos</h3>
+          
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon" style="background:#f5f3ff" data-field="icon">🍼</div>
+          <h3 data-field="title">Baby Shower</h3>
+          
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon" style="background:#f1f5f9" data-field="icon">✨</div>
+          <h3 data-field="title">y más...</h3>
+          
+        </div></div>
+      
+    </div>
+  </section>
 
-        (function () {
-            var btn = document.getElementById('backToTop');
-            if (!btn) return;
-            function update() {
-                if (window.pageYOffset > 300) btn.classList.add('visible');
-                else btn.classList.remove('visible');
-            }
-            window.addEventListener('scroll', update, { passive: true });
-            window.addEventListener('resize', update);
-            btn.addEventListener('click', function () {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-            update();
-        })();
-    </script>
-</body>
-</html>
+  <section id="features">
+    <div class="container text-center">
+      <span class="section-label" data-edit="featSecLabel">TODO INCLUIDO</span>
+      <h2 class="section-title" data-edit="featSecTitle">Todo lo que tu invitación necesita</h2>
+      <p class="section-desc" data-edit="featSecDesc">Funcionalidades pensadas para que tus invitados tengan la mejor experiencia.</p>
+      <div class="features-grid" id="featuresGrid">
+        <div class="feature-item">
+          <div class="feature-icon" data-field="icon">⏱️</div>
+          <h3 data-field="title">Cuenta regresiva</h3>
+          <p data-field="desc">Countdown al gran día para generar emoción desde el primer momento.</p>
+          
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon" data-field="icon">🖼️</div>
+          <h3 data-field="title">Galería de fotos</h3>
+          <p data-field="desc">Muestra los momentos más especiales o el estilo de tu evento.</p>
+          
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon" data-field="icon">✅</div>
+          <h3 data-field="title">Confirmación RSVP</h3>
+          <p data-field="desc">Tus invitados confirman asistencia en un solo toque.</p>
+          
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon" data-field="icon">📍</div>
+          <h3 data-field="title">Mapa del evento</h3>
+          <p data-field="desc">Ubicación exacta con enlace directo a Google Maps.</p>
+          
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon" data-field="icon">📱</div>
+          <h3 data-field="title">Diseño mobile-first</h3>
+          <p data-field="desc">Se ve perfecto en cualquier celular. Sin apps extra.</p>
+          
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon" data-field="icon">🔗</div>
+          <h3 data-field="title">Enlace WhatsApp</h3>
+          <p data-field="desc">Comparte con un clic. Simple, rápido y elegante.</p>
+          
+        </div></div>
+      
+    </div>
+  </section>
+
+  <section class="designs" id="disenos">
+    <div class="container text-center">
+      <span class="section-label" data-edit="desLabel">PORTFOLIO</span>
+      <h2 class="section-title" data-edit="desTitle">Diseño profesional, sin complicaciones</h2>
+      <p class="section-desc" data-edit="desDesc">Somos especialistas en invitaciones digitales. Cada diseño se cuida al detalle para que refleje tu estilo.</p>
+      <div class="designs-grid" id="designsGrid"><div class="design-card" data-index="0">
+          <div class="img-edit-wrap" data-action="change-design-img" data-index="0"><a href="https://invitavipclick.base44.app/i/boda-de-juan-y-rosa" target="_blank" rel="noopener"><img src="imagenes/boda-1.jpg" alt="BODA" loading="lazy"></a></div>
+          <div class="label" data-field="label">BODA</div>
+          
+          
+        </div><div class="design-card" data-index="1">
+          <div class="img-edit-wrap" data-action="change-design-img" data-index="1"><a href="https://invitavipclick.base44.app/i/xv-anos-de-ximena" target="_blank" rel="noopener"><img src="imagenes/xv.jpg" alt="XV AÑOS" loading="lazy"></a></div>
+          <div class="label" data-field="label">XV AÑOS</div>
+          
+          
+        </div><div class="design-card" data-index="2">
+          <div class="img-edit-wrap" data-action="change-design-img" data-index="2"><a href="https://invitavipclick.base44.app/i/cumpleanos-de-esther" target="_blank" rel="noopener"><img src="imagenes/cumple.jpg" alt="CUMPLEAÑOS" loading="lazy"></a></div>
+          <div class="label" data-field="label">CUMPLEAÑOS</div>
+          
+          
+        </div><div class="design-card" data-index="3">
+          <div class="img-edit-wrap" data-action="change-design-img" data-index="3"><a href="https://invitavipclick.base44.app/i/cumpleanos-de-esther" target="_blank" rel="noopener"><img src="imagenes/bautizo.jpg" alt="BAUTIZO" loading="lazy"></a></div>
+          <div class="label" data-field="label">BAUTIZO</div>
+          
+          
+        </div><div class="design-card" data-index="4">
+          <div class="img-edit-wrap" data-action="change-design-img" data-index="4"><a href="https://invitavipclick.base44.app/i/baby-shower-de-paty" target="_blank" rel="noopener"><img src="imagenes/babyshower.jpg" alt="BABY SHOWER" loading="lazy"></a></div>
+          <div class="label" data-field="label">BABY SHOWER</div>
+          
+          
+        </div></div>
+      
+      <div style="margin-top:2.5rem;"><a href="#contacto" class="btn btn-primary" data-edit="desBtn">Solicitar diseño personalizado</a></div>
+    </div>
+  </section>
+
+  <section class="cta-band" id="contacto" style="background: linear-gradient(rgba(11, 18, 32, 0.75), rgba(11, 18, 32, 0.9)), url(&quot;https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1600&amp;q=80&quot;) center center / cover no-repeat;">
+    <div class="container">
+      <h2 data-edit="ctaTitle">¿Listo para enamorar a tus invitados?</h2>
+      <p data-edit="ctaDesc">Cuéntanos sobre tu evento y te enviamos opciones de diseño en menos de 24 horas.</p>
+      <a href="https://wa.me/523121076890?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20invitaciones%20digitales" class="btn btn-gold" target="_blank" rel="noopener" data-edit="ctaBtn" id="whatsappBtn">Escribir por WhatsApp</a>
+      
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="container text-center">
+      <span class="section-label" data-edit="faqLabel">RESOLVEMOS TUS DUDAS</span>
+      <h2 class="section-title" data-edit="faqTitle">Preguntas frecuentes</h2>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-field="q">¿Cómo recibo mi invitación?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer"><p data-field="a">Te enviamos un enlace único listo para compartir. También puedes pedir un código QR o versión para imprimir si lo necesitas.</p></div>
+          
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-field="q">¿Puedo personalizar el diseño?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer"><p data-field="a">¡Por supuesto! Colores, tipografías, textos, fotos y orden de secciones. Todo se adapta a tu estilo y al tono de tu evento.</p></div>
+          
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-field="q">¿Mis invitados necesitan instalar algo?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer"><p data-field="a">No. Solo abren el enlace desde WhatsApp, Instagram o cualquier navegador. Funciona perfecto en celulares sin descargar apps.</p></div>
+          
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-field="q">¿Cuánto tarda la entrega?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer"><p data-field="a">La mayoría de las invitaciones se entregan entre 24 y 48 horas. Si tienes una fecha urgente, avísanos y priorizamos tu pedido.</p></div>
+          
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-field="q">¿Incluye confirmación de asistencia (RSVP)?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer"><p data-field="a">Sí. Tus invitados confirman con un botón y tú recibes las respuestas organizadas para que sepas exactamente quién asiste.</p></div>
+          
+        </div></div>
+      
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-icon">✉</span>
+          <span data-edit="footerBrand">Invita VIP Click</span>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#servicios" data-edit="fnav1">Servicios</a></li>
+          <li><a href="#pasos" data-edit="fnav2">Cómo funciona</a></li>
+          <li><a href="#disenos" data-edit="fnav3">Diseños</a></li>
+          <li><a href="#faq" data-edit="fnav4">FAQ</a></li>
+          <li><a href="#contacto" data-edit="fnav5">Contacto</a></li>
+        </ul>
+        <div class="footer-social" id="socialGrid"><a href="https://www.facebook.com/invitavipclick/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook">f</a></div>
+      </div>
+      
+      <div class="footer-bottom">
+        <span data-edit="copyright">© 2026 Invita VIP Click. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  
+
+
+</body></html>
